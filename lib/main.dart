@@ -1,6 +1,12 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
+
+import 'dart:async';
+import 'dart:convert';
+
+import 'page-devices.dart';
 
 void main() {
   runApp(MyApp());
@@ -64,6 +70,12 @@ class _MyHomePageState extends State<MyHomePage> {
       case 1:
         page = FavoritesPage();
         break;
+      case 2:
+        page = DevicesPage();
+        break;
+      case 3:
+        page = ZephyrFormPage();
+        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -83,6 +95,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   NavigationRailDestination(
                     icon: Icon(Icons.favorite),
                     label: Text('Favorites'),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.handyman_sharp),
+                    label: Text('Devices'),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.book),
+                    label: Text('Zephyr Form'),
                   ),
                 ],
                 selectedIndex: selectedIndex,
@@ -175,6 +195,27 @@ class FavoritesPage extends StatelessWidget {
         ],
       );
     }
+  }
+}
+
+class DevicesPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: DevicesButton(),
+    );
+  }
+}
+
+class ZephyrFormPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: Row(
+      children: [
+        Text("Form"),
+      ],
+    ));
   }
 }
 
